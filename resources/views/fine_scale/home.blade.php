@@ -1,121 +1,117 @@
 @extends('layouts.app')
 
-@section('title', 'Fréquence Radio')
+@section('title', "Barème d'Amende")
 
 @section('sidebar')
-    @if(in_array(Session::get('grade'), ['administrator', 'moderator']))
-        <a href="{{ route('radio_reload') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Reload Radio</a>
-    @endif
+    <a class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="#" data-toggle="modal" data-target="#finesModal"><i class="fas fa-download fa-sm text-white-50"></i> Création d'une amende</a>
+
+    <div class="modal fade" id="finesModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Création d'une amende</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ route('fine_scales_create') }}">
+                    @csrf
+                <div class="modal-body">
+                        <div class="form-group">
+                            <label for="type" class="col-form-label">Type</label>
+                            <select class="form-control" id="type" name="type">
+                                <option value="Vol">Vol</option>
+                                <option value="Ordre public">Ordre public</option>
+                                <option value="Armement">Armement</option>
+                                <option value="Délits majeur">Délits majeur</option>
+                                <option value="Stupéfiant">Stupéfiant</option>
+                                <option value="Marché Noir">Marché Noir</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Nom de Amende" required>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="number" name="point" class="form-control" placeholder="Retrait Point(s)" required>
+                                </div>
+                                <div class="col">
+                                    <input type="number" name="price" class="form-control" placeholder="Prix de l'Amende (₽)" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="option" placeholder="Option"></textarea>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('content')
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card md-4">
-                    <h5 class="card-header">
-                        Fréquence Radio
-                    </h5>
-                    <div class="card-body">
-                        <table class="table text-center">
-                            <tbody>
-                                <tr class="table">
-                                    <td>
-                                        Courte portée
-                                    </td>
-                                    <td>
-                                        {{ $radios->cp }}
-                                    </td>
-
-                                </tr>
-                                <tr class="table">
-                                    <td>
-                                        Longue portée
-                                    </td>
-                                    <td>
-                                        {{ $radios->lp }}
-                                    </td>
-
-                                </tr>
-                                <tr class="table">
-                                    <td>
-                                        Courte portée compromise
-                                    </td>
-                                    <td>
-                                        {{ $radios->cp_c }}
-                                    </td>
-
-                                </tr>
-                                <tr class="table">
-                                    <td>
-                                        Mise à Jour
-                                    </td>
-                                    <td>
-                                        {{ $radios->updated_at }}
-                                    </td>
-
-                                </tr>
-                                <tr class="table">
-                                    <td>
-                                        Utilisateur modifier
-                                    </td>
-                                    <td>
-                                        {{ $radios->name_user }}
-                                    </td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                {{$dataTable->table()}}
             </div>
         </div>
-        <br>
-        @if(in_array(Session::get('grade'), ['administrator', 'moderator']))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card md-4">
-                    <h5 class="card-header">
-                        Editeur des Fréquence Radio
-                    </h5>
-                    <div class="card-body">
-                        <form action="{{ route('radio_post') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label for="cp">Courte portée (50-400)</label>
-                                <input type="number" step="0.1" min="50" max="400" class="form-control" id="cp" name="cp" placeholder="Courte portée" value="{{ $radios->cp }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="lp">Longue  portée (30-87)</label>
-                                <input type="number" step="0.1" min="30" max="87" class="form-control" id="lp"  name="lp" placeholder="Longue  portée" value="{{ $radios->lp }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="cp_c">Courte portée si compromise (50-400)</label>
-                                <input type="number" step="0.1" min="50" max="400" class="form-control" id="cp_c" name="cp_c" placeholder="Courte portée compromise" value="{{ $radios->cp_c }}">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        @endif
-        </div>
-
+    </div>
 @endsection
+
+@push('scripts')
+    {{$dataTable->scripts()}}
+    <script>
+        $(function () {
+            $(document).on('click', '#deleteBtn', function(e){
+                const productId = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "It will be deleted permanently!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!',
+                    allowOutsideClick: false,
+                    showLoaderOnConfirm: true,
+                    preConfirm: function() {
+                        return new Promise(function(resolve) {
+                            setTimeout(function() {
+                                resolve()
+                            }, 2000)
+                        })
+                    }
+                }).then(function(result) {
+                    if (result.value) {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: '{{ route('fine_scales_delete') }}',
+                            data: 'id=' + productId,
+                            type: 'POST',
+                            cache: false,
+                            success: function () {
+                                window.LaravelDataTables["finescale-table"].ajax.reload(null, false);
+                                Swal.fire('Deleted!', 'The member was deleted successfully.')
+                            },
+                            error: function (result) {
+                                console.log(result)
+                            }
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+@endpush
+

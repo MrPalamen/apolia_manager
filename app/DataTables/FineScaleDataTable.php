@@ -2,14 +2,11 @@
 
 namespace App\DataTables;
 
-use App\Records;
-use Yajra\DataTables\Html\Button;
+use App\FineScale;
 use Yajra\DataTables\Html\Column;
-use Yajra\DataTables\Html\Editor\Editor;
-use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class RecordsDataTable extends DataTable
+class FineScaleDataTable extends DataTable
 {
     /**
      * Build DataTable class.
@@ -22,17 +19,17 @@ class RecordsDataTable extends DataTable
         return datatables()
             ->eloquent($query)
             ->addColumn('action', function ($query) {
-                return view('record.action', compact('query'))->render();
+                return view('fine_scale.action', compact('query'))->render();
             });
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Records $model
+     * @param \App\FineScale $model
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function query(Records $model)
+    public function query(FineScale $model)
     {
         return $model->newQuery();
     }
@@ -45,14 +42,11 @@ class RecordsDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-            ->setTableId('Record-table')
-            ->columns($this->getColumns())
-            ->minifiedAjax()
-            ->dom('Bfrtip')
-            ->orderBy(0)
-            ->parameters([
-                'pageLength'=> 50
-            ]);
+                    ->setTableId('finescale-table')
+                    ->columns($this->getColumns())
+                    ->minifiedAjax()
+                    ->dom('Bfrtip')
+                    ->orderBy(0, 'asc');
     }
 
     /**
@@ -63,12 +57,12 @@ class RecordsDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::make('id'),
-            Column::make('surname'),
+            Column::make('type'),
             Column::make('name'),
-            Column::make('number'),
             Column::computed('action')
-                ->width(330),
+                ->exportable(false)
+                ->printable(false)
+                ->width(300),
         ];
     }
 
@@ -79,6 +73,6 @@ class RecordsDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Records_' . date('YmdHis');
+        return 'FineScale_' . date('YmdHis');
     }
 }

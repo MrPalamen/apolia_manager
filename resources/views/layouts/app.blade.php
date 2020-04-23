@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Smain Yahia-Meddah">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Manager Apolia - @yield('title')</title>
 
@@ -17,7 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/b-1.6.1/datatables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/datatables.min.css"/>
     <link href="{{ asset('assets/css/sb-admin-2.css') }}" rel="stylesheet">
 
 </head>
@@ -83,8 +84,8 @@
         </div>
 
         <!-- Nav Item - Charts -->
-        <li class="nav-item {{ request()->is('manager/fines') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('fines') }}">
+        <li class="nav-item {{ request()->is('manager/fine_scales') ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('fine_scales') }}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Barème d'Amende</span></a>
         </li>
@@ -240,14 +241,11 @@
 
 <!-- Page level plugins -->
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="{{ asset('assets/vendor/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
-<script src="https://cdn.datatables.net/buttons/1.0.3/js/dataTables.buttons.min.js"></script>
 <script src="{{ asset('vendor/datatables/buttons.server-side.js') }}"></script>
 
-
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 @stack('scripts')
 
 

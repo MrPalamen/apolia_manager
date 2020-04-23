@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Fine;
+use App\FineScale;
 use App\Records;
 use Illuminate\Http\Request;
 use App\DataTables\RecordsDataTable;
+use Illuminate\Support\Facades\Session;
 
 //casier judiciaire
 class ControllerRecords extends Controller
@@ -14,27 +17,29 @@ class ControllerRecords extends Controller
     {
         return $dataTable->render('record.home');
     }
-    public function search()
-    {
-
-    }
 
     public function create()
     {
         return view('record.create');
     }
 
-    public function record()
+    public function view($id)
     {
 
+        $view = Records::find($id)->toArray();
+        $views = Fine::where('user_id', $id)->get()->toArray();
+        dd($view, $views);
+        return view('fine_scale.view', ['view' => $view]);
     }
+
 
     public function delete(Request $request)
     {
         if ($request->input('id') >= 1)
         {
-            $response = DB::table('records')->where('id', $request->input('id'))->delete();
-            return json_encode($response);
+            $response = Fine::where('user_id', $request->input('id'))->delete();
+            $records = Records::find($request->input('id'))->delete();
+            return response()->json($records);
         }
         else
         {

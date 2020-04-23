@@ -15,10 +15,11 @@ class CreateRadiosTable extends Migration
     {
         Schema::create('radios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
-            $table->decimal('cp');
-            $table->decimal('lp');
-            $table->decimal('cp_c');
+            $table->string('name')->default('name');
+            $table->decimal('cp')->default(0);
+            $table->decimal('lp')->default(0);
+            $table->decimal('cp_c')->default(0);
+            $table->decimal('lp_c')->default(0);
             $table->string('name_user');
             $table->timestamps();
         });
