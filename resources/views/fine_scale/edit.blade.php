@@ -24,6 +24,7 @@
                             <option @if($view->type === 'Délits majeur') selected @endif value="Délits majeur">Délits majeur</option>
                             <option @if($view->type === 'Stupéfiant') selected @endif value="Stupéfiant">Stupéfiant</option>
                             <option @if($view->type === 'Marché Noir') selected @endif value="Marché Noir">Marché Noir</option>
+                            <option @if($view->type === '.') selected @endif value=".">.</option>
                         </select>
                     </div>
                     <div class="form-group">

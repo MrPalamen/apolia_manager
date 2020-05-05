@@ -36,7 +36,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-user-shield"></i>
             </div>
-            <div class="sidebar-brand-text mx-3"><sup>v0.1</sup></div>
+            <div class="sidebar-brand-text mx-3"><sup>v0.2</sup></div>
         </a>
 
         <!-- Divider -->

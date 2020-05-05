@@ -22,9 +22,6 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card md-4">
-                <h5 class="card-header">
-                    Fréquence Radio
-                </h5>
                 <div class="card-body">
                     <table class="table">
                         <tbody>
@@ -96,9 +93,6 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card md-4">
-                        <h5 class="card-header">
-                            Editeur des Fréquence Radio
-                        </h5>
                         <div class="card-body">
                             <div class="table-repsonsive">
                                 <span id="error"></span>

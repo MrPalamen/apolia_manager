@@ -23,7 +23,7 @@ class ControllerRecords extends Controller
         $view = (object)Records::find($id)->toArray();
         $find = Fine::where('user_id', $id)->get()->toArray();
         if (count($find) > 0){
-            $find = Fine::where('user_id', $id)->orderBy('type', 'desc')->get()->toArray();
+            $find = Fine::where('user_id', $id)->orderBy('type', 'asc')->get()->toArray();
         }
 
         $number = 12;

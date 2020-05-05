@@ -21,11 +21,13 @@
                             <label for="type" class="col-form-label">Type</label>
                             <select class="form-control" id="type" name="type">
                                 <option value="Route">Route</option>
+                                <option value="Vol">Vol</option>
                                 <option value="Ordre public">Ordre public</option>
                                 <option value="Armement">Armement</option>
                                 <option value="Délits majeur">Délits majeur</option>
                                 <option value="Stupéfiant">Stupéfiant</option>
                                 <option value="Marché Noir">Marché Noir</option>
+                                <option value=".">.</option>
                             </select>
                         </div>
                         <div class="form-group">

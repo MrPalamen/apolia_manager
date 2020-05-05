@@ -20,8 +20,8 @@ class CheckGrade
         /*
          * Config User id groups
          */
-        $Admin = ['4'];
-        $Moderator = ['8'];
+        $Admin = ['4', '8'];
+        $Moderator = ['6'];
         $User = ['10'];
         // GET API USER
         if (Session::exists('grade'))
