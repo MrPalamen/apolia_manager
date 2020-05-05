@@ -1,9 +1,3 @@
-<a href="{{ route('fine_scales_view', ['id' => $query->id]) }}" class="btn btn-info btn-icon-split btn-sm">
-                    <span class="icon text-white">
-                      <i class="fas fa-flag"></i>
-                    </span>
-    <span class="text">view</span>
-</a>
 <a href="{{ route('fine_scales_edit', ['id' => $query->id]) }}" class="btn btn-info btn-icon-split btn-sm">
                     <span class="icon text-white">
                       <i class="fas fa-info-circle"></i>

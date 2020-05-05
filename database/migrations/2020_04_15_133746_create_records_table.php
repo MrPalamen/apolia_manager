@@ -19,6 +19,9 @@ class CreateRecordsTable extends Migration
             $table->string('name');
             $table->string('number')->unique();
             $table->longText('note')->nullable();
+            $table->string('name_agent');
+            $table->string('grade_agent');
+            $table->integer('credit')->default(0);
             $table->timestamps();
         });
     }

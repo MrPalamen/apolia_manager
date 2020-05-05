@@ -20,8 +20,10 @@ use Illuminate\Support\Str;
 $factory->define(App\Records::class, function (Faker $faker) {
 
     return [
-        'surname' => Str::random(9),
-        'name' => Str::random(4),
-        'number' => Str::random(12),
+        'surname' => $faker->firstName,
+        'name' => $faker->lastName,
+        'number' => $faker->bothify('??########') ,
+        'name_agent' => 'MrPalamen',
+        'grade_agent' => 'Kontraktniki'
     ];
 });

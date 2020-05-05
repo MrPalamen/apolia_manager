@@ -20,7 +20,8 @@ class ControllerRadio extends Controller
         $request->validate([
             'cp' => 'required',
             'lp' => 'required',
-            'cp_c' => 'required'
+            'cp_c' => 'required',
+            'lp_c' => 'required'
         ]);
 
         if($request->all() !== null)
@@ -29,6 +30,7 @@ class ControllerRadio extends Controller
                 'cp' => $request->input('cp'),
                 'lp' => $request->input('lp'),
                 'cp_c' => $request->input('cp_c'),
+                'lp_c' => $request->input('lp_c'),
                 'name_user' => Session::get('user')->name,
                 'updated_at' => Carbon::now('Europe/Paris')->format('Y-m-d H:i:s')
             ));
@@ -47,13 +49,15 @@ class ControllerRadio extends Controller
         $data = [
             'cp' => rand (50*10, 400*10) / 10,
             'lp' => rand (30*10, 87*10) / 10,
-            'cp_c' => rand (50*10, 400*10) / 10
+            'cp_c' => rand (50*10, 400*10) / 10,
+            'lp_c' => rand (30*10, 87*10) / 10,
         ];
 
             DB::table('radios')->where('id', 1)->update(array(
                 'cp' => $data['cp'],
                 'lp' => $data['lp'],
                 'cp_c' => $data['cp_c'],
+                'lp_c' => $data['lp_c'],
                 'name_user' => Session::get('user')->name,
                 'updated_at' => Carbon::now('Europe/Paris')->format('Y-m-d H:i:s')
             ));

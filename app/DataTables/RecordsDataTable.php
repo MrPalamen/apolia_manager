@@ -64,9 +64,10 @@ class RecordsDataTable extends DataTable
     {
         return [
             Column::make('id'),
-            Column::make('surname'),
-            Column::make('name'),
-            Column::make('number'),
+            Column::make('surname')->title('Prénom du Salarié'),
+            Column::make('name')->title('Nom du Salarié'),
+            Column::make('number')->title('Matricule du Salarié'),
+            Column::make('updated_at')->title('Date de modification'),
             Column::computed('action')
                 ->width(330),
         ];

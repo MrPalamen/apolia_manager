@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label for="type" class="col-form-label">Type</label>
                             <select class="form-control" id="type" name="type">
-                                <option value="Vol">Vol</option>
+                                <option value="Route">Route</option>
                                 <option value="Ordre public">Ordre public</option>
                                 <option value="Armement">Armement</option>
                                 <option value="Délits majeur">Délits majeur</option>

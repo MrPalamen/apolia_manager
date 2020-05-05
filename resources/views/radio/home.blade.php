@@ -48,6 +48,15 @@
                                 </tr>
                                 <tr class="table">
                                     <td>
+                                        Longue portée compromise
+                                    </td>
+                                    <td>
+                                        {{ $radios->lp_c }}
+                                    </td>
+
+                                </tr>
+                                <tr class="table">
+                                    <td>
                                         Mise à Jour
                                     </td>
                                     <td>
@@ -93,6 +102,10 @@
                             <div class="form-group">
                                 <label for="cp_c">Courte portée si compromise (50-400)</label>
                                 <input type="number" step="0.1" min="50" max="400" class="form-control" id="cp_c" name="cp_c" placeholder="Courte portée compromise" value="{{ $radios->cp_c }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="lp_c">Longue  portée si compromise (30-87)</label>
+                                <input type="number" step="0.1" min="30" max="87" class="form-control" id="lp_c" name="lp_c" placeholder="Courte portée compromise" value="{{ $radios->lp_c }}">
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

@@ -25,13 +25,13 @@ class ControllerFineScales extends Controller
 
     public function view($id)
     {
-        $view = FineScale::find($id)->toArray();
+        $view = (object)FineScale::find($id)->toArray();
         return view('fine_scale.view', ['view' => $view]);
     }
 
     public function edit($id)
     {
-        $view = FineScale::find($id)->toArray();
+        $view = (object)FineScale::find($id)->toArray();
         return view('fine_scale.edit', ['view' => $view]);
     }
 

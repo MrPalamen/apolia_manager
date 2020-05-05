@@ -33,7 +33,6 @@ Route::middleware(['Kronthto\LaravelOAuth2Login\CheckOAuth2', 'CheckGrade'])->pr
     Route::prefix('records')->group(function (){
         Route::get('/', 'ControllerRecords@index')->name('records');
         Route::get('/view/{id}', 'ControllerRecords@view')->name('records_view');
-        Route::get('/create', 'ControllerRecords@create')->name('records_create');
         Route::post('/create', 'ControllerRecords@create')->name('records_create_post');
         Route::get('/edit/{id}', 'ControllerRecords@edit')->name('records_edit');
         Route::post('/edit', 'ControllerRecords@edit_post')->name('records_edit_post');
@@ -44,8 +43,9 @@ Route::middleware(['Kronthto\LaravelOAuth2Login\CheckOAuth2', 'CheckGrade'])->pr
     Route::prefix('fines')->group(function (){
         Route::get('/{id}', 'ControllerFines@index')->name('fines');
         Route::post('/', 'ControllerFines@create')->name('fines_create');
-        Route::get('/edit', 'ControllerFines@edit')->name('fines_edit');
+        Route::get('/edit/{id}', 'ControllerFines@edit')->name('fines_edit');
         Route::post('/edit', 'ControllerFines@edit_post')->name('fines_edit_post');
+        Route::post('/delete', 'ControllerFines@delete')->name('fines_delete');
 
     });
 

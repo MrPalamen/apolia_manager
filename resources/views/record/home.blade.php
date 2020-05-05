@@ -10,27 +10,59 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Création d'un Casier Judiciaire</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <form method="post" action="{{ route('fines_create') }}">
+                <form method="post" action="{{ route('records_create_post') }}">
+                    @csrf
+                    <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" name="number" class="form-control" placeholder="Matricule du Salarié (AB12345678)" required>
                         </div>
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="surname" class="form-control" placeholder="Prénom du Salarié" required>
+                                </div>
+                                <div class="col">
+                                    <input type="text" name="name" class="form-control" placeholder="Nom du Salarié" required>
+                                </div>
+                            </div>
                         </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-                </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" value="{{ Session::get('user')->name }}" placeholder="Matricule du Salarié (AB12345678)" disabled>
+                        </div>
+                        <div class="form-group row">
+                            <label for="inputEmail3" class="col-sm-4 col-form-label">Grade de l'agent</label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="type" name="grade_agent">
+                                    @if(Session::get('grade') === 'administrator')
+                                        <option value="Colonel">Colonel</option>
+                                        <option value="Commandant">Commandant</option>
+                                    @endif
+                                    @if(Session::get('grade') === 'moderator' || Session::get('grade') === 'administrator')
+                                            <option value="Lieutenant">Lieutenant</option>
+                                            <option value="Maitre-principal (Major)">Maitre-principal (Major)</option>
+                                    @endif
+
+                                    <option value="Operator">Operator</option>
+                                    <option value="Caporal">Caporal</option>
+                                    <option value="Kontraktniki">Kontraktniki</option>
+                                    <option value="Recrue">Recrue</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="note" placeholder="Note"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
