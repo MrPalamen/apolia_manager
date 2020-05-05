@@ -22,6 +22,10 @@ class ControllerRecords extends Controller
     {
         $view = (object)Records::find($id)->toArray();
         $find = Fine::where('user_id', $id)->get()->toArray();
+        if (count($find) > 0){
+            $find = Fine::where('user_id', $id)->orderBy('type', 'desc')->get()->toArray();
+        }
+
         $number = 12;
         foreach ($find as $key => $value)
         {

@@ -20,7 +20,7 @@ class ControllerFines extends Controller
     {
         if ($id > 0){
             $record = (object)Records::find($id)->toArray();
-            $fines = FineScale::all()->toArray();
+            $fines = FineScale::all()->sortBy('type')->toArray();
             $fine = Fine::where('user_id', $id)->get()->toArray();
             $number = 12;
             foreach ($fine as $key => $value)
