@@ -15,12 +15,11 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
-Route::get('/', function () {
+
+Route::get('', function () {
     return view('welcome');
 })->name('home');
 
-// DEBUG
-//Route::get('/debug', 'Manager')->name('debug');
 Route::get('logout', function (){
     Session::flush();
     return redirect()->route('home');

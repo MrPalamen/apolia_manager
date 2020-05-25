@@ -14,7 +14,7 @@ class ControllerFineScales extends Controller
 {
     public function __construct()
     {
-        if (!in_array(Session::get('grade'), ['administrator', 'moderator']))
+        if (!in_array(Session::get('grade'), ['administrator', 'h_smp']))
             return redirect()->route('manager');
     }
 

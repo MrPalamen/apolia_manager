@@ -39,7 +39,7 @@
                         <div class="col-md-3 pr-1">
                             <div class="form-group">
                                 <label>Amende non payée (₽) (Impayé)</label>
-                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
                                     <input type="number" class="form-control" name="credit" placeholder="Amende non payée (₽) (Impayé)" value="{{ $view->credit }}" required>
                                 @else
                                     <input type="number" class="form-control" name="credit" placeholder="Amende non payée (₽) (Impayé)" value="{{ $view->credit }}" readonly>
@@ -50,7 +50,7 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>Nom de l'agent</label>
-                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
                                     <input type="text" class="form-control" name="name_agent" placeholder="Nom de l'agent" value="{{ $view->name_agent }}" required>
                                 @else
                                     <input type="text" class="form-control" name="name_agent" placeholder="Nom de l'agent" value="{{ $view->name_agent }}" readonly>
@@ -60,13 +60,13 @@
                         <div class="col-md-3 pl-1">
                             <div class="form-group">
                                 <label>Grade de l'agent</label>
-                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+                                @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
                                     <select class="form-control" id="type" name="grade_agent" >
                                         @if(Session::get('grade') === 'administrator')
                                             <option @if($view->grade_agent === 'Colonel') selected @endif value="Colonel">Colonel</option>
                                             <option @if($view->grade_agent === 'Commandant') selected @endif value="Commandant">Commandant</option>
                                         @endif
-                                        @if(Session::get('grade') === 'moderator' || Session::get('grade') === 'administrator')
+                                        @if(Session::get('grade') === 'h_smp' || Session::get('grade') === 'administrator')
                                             <option @if($view->grade_agent === 'Lieutenant') selected @endif value="Lieutenant">Lieutenant</option>
                                             <option @if($view->grade_agent === 'Maitre-principal (Major)') selected @endif value="Maitre-principal (Major)">Maitre-principal (Major)</option>
                                         @endif

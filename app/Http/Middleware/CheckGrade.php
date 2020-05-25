@@ -20,9 +20,11 @@ class CheckGrade
         /*
          * Config User id groups
          */
-        $Admin = ['4', '8', '18'];
-        $Moderator = ['6'];
-        $User = ['10'];
+        $admin = ['4'];
+        $moderator = ['18','6'];
+        $support = ['16'];
+        $h_smp = ['8'];
+        $smp = ['10'];
         // GET API USER
         if (Session::exists('grade'))
         {
@@ -43,16 +45,25 @@ class CheckGrade
         $grade = 'guard';
         foreach ($groups as $value)
         {
-            if (in_array($value, $Admin)) {
+            if (in_array($value, $admin)) {
                 $grade = 'administrator';
                 break;
             }
-            if (in_array($value, $Moderator)) {
+            if (in_array($value, $moderator)) {
                 $grade = 'moderator';
                 break;
             }
-            if (in_array($value, $User)) {
-                $grade = 'user';
+            if (in_array($value, $support)) {
+                $grade = 'support';
+                break;
+            }
+            if (in_array($value, $h_smp)) {
+                $grade = 'h_smp';
+                break;
+            }
+
+            if (in_array($value, $smp)) {
+                $grade = 'smp';
                 break;
             }
         }

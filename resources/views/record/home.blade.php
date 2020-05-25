@@ -42,7 +42,7 @@
                                         <option value="Colonel">Colonel</option>
                                         <option value="Commandant">Commandant</option>
                                     @endif
-                                    @if(Session::get('grade') === 'moderator' || Session::get('grade') === 'administrator')
+                                    @if(Session::get('grade') === 'h_smp' || Session::get('grade') === 'administrator')
                                             <option value="Lieutenant">Lieutenant</option>
                                             <option value="Maitre-principal (Major)">Maitre-principal (Major)</option>
                                     @endif

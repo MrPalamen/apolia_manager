@@ -3,6 +3,7 @@
 namespace App\DataTables;
 
 use App\Records;
+use Carbon\Carbon;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -23,6 +24,9 @@ class RecordsDataTable extends DataTable
             ->eloquent($query)
             ->addColumn('action', function ($query) {
                 return view('record.action', compact('query'))->render();
+            })
+            ->addColumn('updated_at', function ($query) {
+                return $query->updated_at;
             });
     }
 

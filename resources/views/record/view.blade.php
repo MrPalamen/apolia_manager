@@ -86,7 +86,7 @@
                                             <a href="{{ route('fines_edit', $value['id']) }}" class="btn btn-primary btn-sm " style="align-items: center" role="button">
                                                Editer d'une amende
                                             </a>
-                                            @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+                                            @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
                                             <button id="deleteBtn" type="button" data-id="{{ $value['id'] }}" class="btn btn-danger btn-sm" style="align-items: center">
                                                 supprimer
                                             </button>

@@ -3,7 +3,7 @@
 @section('title', 'Fréquence Radio')
 
 @section('sidebar')
-    @if(in_array(Session::get('grade'), ['administrator', 'moderator']))
+    @if(in_array(Session::get('grade'), ['administrator', 'h_smp']))
         <a href="{{ route('radio_reload') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Reload Radio</a>
     @endif
 @endsection
@@ -81,7 +81,7 @@
             </div>
         </div>
         <br>
-        @if(in_array(Session::get('grade'), ['administrator', 'moderator']))
+        @if(in_array(Session::get('grade'), ['administrator', 'h_smp']))
         <div class="row">
             <div class="col-md-12">
                 <div class="card md-4">

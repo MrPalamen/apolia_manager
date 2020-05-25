@@ -36,7 +36,8 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-user-shield"></i>
             </div>
-            <div class="sidebar-brand-text mx-3"><sup>v0.2</sup></div>
+            <!-- -->
+            <div class="sidebar-brand-text mx-3"><sup>v{{ env('APP_VER') }}</sup></div>
         </a>
 
         <!-- Divider -->
@@ -45,6 +46,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+    @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp' || Session::get('grade') === 'smp')
         <!-- Heading -->
         <div class="sidebar-heading">
             Interface
@@ -76,8 +78,9 @@
 
         <!-- Divider -->
         <hr class="sidebar-divider">
+        @endif()
 
-        @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+        @if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
         <!-- Heading -->
         <div class="sidebar-heading">
             Admin

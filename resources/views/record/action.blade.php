@@ -16,7 +16,7 @@
                     </span>
     <span class="text">edit</span>
 </a>
-@if(Session::get('grade') === 'administrator' || Session::get('grade') === 'moderator')
+@if(Session::get('grade') === 'administrator' || Session::get('grade') === 'h_smp')
 <button id="deleteBtn" type="button" data-id="{{ $query->id }}" class="btn btn-danger btn-icon-split btn-sm">
         <span class="icon text-white">
           <i class="fas fas fa-trash"></i>
